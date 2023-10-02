@@ -1,0 +1,30 @@
+spring:
+  h2:
+    console:
+      enabled: 'true'
+  datasource:
+    url: jdbc:h2:mem:testdb
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: 'true'
+        format_sql: 'true'
+    defer-datasource-initialization: 'true'
+    show-sql: 'true'
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
+server:
+  port: 8081
+  
+management:
+  endpoint:
+    shutdown:
+      enabled: true  
