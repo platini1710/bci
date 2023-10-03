@@ -38,21 +38,22 @@
 
       - consultar por el registro  ingresado
 			url   :  http://localhost:8081/consult/usuario/login/1-8
-			Metodo:  Get	  
-			Primero ingresar  en la pestaña Header y agregar la key Authorization y el valor del token que muestra cuando se crea el registo 
-			luego ingrear el Json  
-			{
-			  "id" :"11566187-6"
-			}
-		
+			Metodo:  Get	
+			el 1-8 es el rut que gurdamos anteriormente  que forma parte de la url
+		       En el  pestaña Header y agregar la key Authorization y el valor del token es el  que se devuelve al crear  un registro 
+	
+				Authorization:  Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYXVndXN0byBFc3Bpbm96YSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2OTYyNjM3MjIsImV4cCI6MTY5NjI2NDMyMn0.LN8HpPOXw_OuwJ0pTflZWcj6XKHKnFpU4LUFpXbxvClKo5wLGEefHVPZmLToE02rgaXPOJEyIJljgidkkANrZQ
+			 
 		
 		
 		
 	  - consultar por todos los registros  ingresados
 	  	    url   :  http://localhost:8081/consult/usuario/allUsuarios
 		    Metodo:  Get	
-	        Primero ingresar  en la pestaña Header y agregar la key Authorization y el valor del token que muestra cuando se crea el registo 
-		     no se ingresa nada, se deja vacio
+			En el  pestaña Header y agregar la key Authorization y el valor del token es el  que se devuelve al crear  un registro 
+	
+				Authorization:  Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYXVndXN0byBFc3Bpbm96YSIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2OTYyNjM3MjIsImV4cCI6MTY5NjI2NDMyMn0.LN8HpPOXw_OuwJ0pTflZWcj6XKHKnFpU4LUFpXbxvClKo5wLGEefHVPZmLToE02rgaXPOJEyIJljgidkkANrZQ
+			 
 			 
 			 
 			 
