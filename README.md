@@ -9,8 +9,8 @@
 	  los reporte html  estan en la carpeta 
 	  
 	  
-	test de integracion ==>  tareasBci\build\reports\tests\integrationTest\index.html
-	test unitarios ==>  tareasBci\build\reports\tests\test\index.html
+	test de integracion ==>  \build\reports\tests\integrationTest\index.html
+	test unitarios ==>  \build\reports\tests\test\index.html
 	
 	 
 	 
