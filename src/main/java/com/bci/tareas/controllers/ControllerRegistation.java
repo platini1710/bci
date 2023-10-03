@@ -67,7 +67,7 @@ public class ControllerRegistation {
 			+ " retorna el resultado en campo Msg ")
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<RespuestaDTO> saveUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<?> saveUsuario(@RequestBody Usuario usuario) {
 		logger.info("grabar tareas");
 		String str = ZDT_FORMATTER.format(ZonedDateTime.now());
 		RespuestaDTO response = new RespuestaDTO();
@@ -137,15 +137,10 @@ public class ControllerRegistation {
 			response.setEmail(usuario.getEmail());
 			response.setToken(usuario.getToken());
 			response.setIsActive("true");
-			
-			if (usuario.getPhone()!=null) {
-				logger.debug("phone  " );
-				Phone phone =new Phone();
-				phone.setId(uuid.toString());
-				phone.setNumber(usuario.getPhone().getNumber());
-				usuario.setPhone(phone);
-				registraUsuarioServices.update(phone);
+			if  (usuario.getPhone()!=null) {
+				usuario.getPhone().setId(uuid.toString());
 			}
+
 			registraUsuarioServices.save(usuario);
 
 		} catch (ResourceFoundException e) {
@@ -155,8 +150,8 @@ public class ControllerRegistation {
 			error.setCodigo(HttpStatus.NOT_FOUND.value());
 			error.setDetail(e.getMessage());
 			error.setTimestamp(timestamp.toString());
-			response.setErrorResp(error);;
-			return new ResponseEntity<>( response, HttpStatus.NOT_FOUND);
+
+			return new ResponseEntity<>( error, HttpStatus.NOT_FOUND);
 		} catch (ErrorException e) {
 			logger.error(e.getMessage());
 	
@@ -164,8 +159,8 @@ public class ControllerRegistation {
 			error.setCodigo(HttpStatus.BAD_REQUEST.value());
 			error.setDetail(e.getMessage());
 			error.setTimestamp(timestamp.toString());
-			response.setErrorResp(error);;
-			return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST);
+
+			return new ResponseEntity<>( error, HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			
@@ -174,8 +169,8 @@ public class ControllerRegistation {
 			error.setCodigo(500);
 			error.setDetail(e.getMessage());
 			error.setTimestamp(timestamp.toString());
-			response.setErrorResp(error);
-			return new ResponseEntity<>( response, HttpStatus.INTERNAL_SERVER_ERROR);
+
+			return new ResponseEntity<>( error, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<>( response, HttpStatus.OK);
 	}
@@ -197,7 +192,7 @@ public class ControllerRegistation {
 								.collect(Collectors.toList()))
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 600000))
-				.signWith(SignatureAlgorithm.HS512,
+				.signWith(SignatureAlgorithm.HS256,
 						secretKey.getBytes()).compact();
 
 		return "Bearer " + token;

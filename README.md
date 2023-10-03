@@ -30,11 +30,19 @@
 			"password": "A23aaaaa#@",
 			"email": "aerrspinoza3010@gmail.com",
 			"phone": {
-						"number":12212221
-
+						"number":12212221,
+                        "cityCode":569,
+                        "countryCode":"CL"
 					}
 			}
-		
+					
+			{
+			"id" :"1-9",    //rut chileno sin validar
+			"name": "augusto Espinoza",
+			"password": "A23aaaaa#@",
+			"email": "aerrspinoza3011@gmail.com"
+
+			}
 
       - consultar por el registro  ingresado
 			url   :  http://localhost:8081/consult/usuario/login/1-8
