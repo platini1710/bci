@@ -40,9 +40,7 @@ public class Phone  implements Serializable {
 	private int cityCode;
     @Column(name = "countrycode", nullable = true)    
 	private String countryCode;
-    @OneToOne
-    private Usuario usuario;
-    
+
 
     
 	public String getId() {
@@ -69,17 +67,6 @@ public class Phone  implements Serializable {
 	}
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
-	}
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-    
-    
-	
-	
+	}  	
 	
 }
