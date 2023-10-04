@@ -1,4 +1,4 @@
-package com.global.tareas.helper;
+package com.bci.tareas.helper;
 
 import java.util.regex.Pattern;
 

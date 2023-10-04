@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,11 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bci.tareas.dto.PhoneDto;
 import com.bci.tareas.dto.RespuestaDTO;
+import com.bci.tareas.helper.ErrorResp;
 import com.bci.tareas.model.Usuario;
 import com.bci.tareas.services.ConsultaUsuarioService;
 import com.bci.tareas.services.RegistraUsuarioServices;
-import com.global.tareas.helper.ErrorException;
-import com.global.tareas.helper.ErrorResp;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -109,25 +107,25 @@ public class ControllerConsult {
 			+ "resultado en campoProducto maneja su propias excepcion")
 	@GetMapping("/login/{id}")
 	public ResponseEntity<?> getUsuariosById(@PathVariable(value ="id", required = true) String id) {
-		 str = ZDT_FORMATTER.format(ZonedDateTime.now());
+		str = ZDT_FORMATTER.format(ZonedDateTime.now());
 		logger.info("id  <:::" + id);
 		try {
-		Usuario user = new Usuario(id);
-		RespuestaDTO r=new RespuestaDTO();
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	    HttpHeaders headers = new HttpHeaders();
-
-		byte[] byte_id=user.getId().getBytes();
-		UUID uuid = UUID.nameUUIDFromBytes(byte_id);
-
-		logger.info("uuid id  <:::" + uuid.toString());
-		logger.info("user  <:::" + user);
-		Usuario usuario=consultaUsuarioService.findUsuario(uuid.toString());
-	    if (usuario==null) {
-			return getError();
-	    } else 
-		return 	 new ResponseEntity<>(
-				usuario, headers, HttpStatus.INTERNAL_SERVER_ERROR);
+			Usuario user = new Usuario(id);
+			RespuestaDTO r=new RespuestaDTO();
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		    HttpHeaders headers = new HttpHeaders();
+	
+			byte[] byte_id=user.getId().getBytes();
+			UUID uuid = UUID.nameUUIDFromBytes(byte_id);
+	
+			logger.info("uuid id  <:::" + uuid.toString());
+			logger.info("user  <:::" + user);
+			Usuario usuario=consultaUsuarioService.findUsuario(uuid.toString());
+		    if (usuario==null) {
+				return getError();
+		    } else 
+			return 	 new ResponseEntity<>(
+					usuario, headers, HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 
 		catch (Exception e) {

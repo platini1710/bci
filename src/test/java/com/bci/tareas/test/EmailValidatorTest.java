@@ -1,16 +1,14 @@
 package com.bci.tareas.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import com.global.tareas.helper.EmailValidatorSimple;
+import com.bci.tareas.helper.EmailValidatorSimple;
 
 public class EmailValidatorTest {
 	  @ParameterizedTest(name = "#{index} - Run test with email = {0}")

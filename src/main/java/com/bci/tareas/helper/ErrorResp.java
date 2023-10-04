@@ -1,6 +1,4 @@
-package com.global.tareas.helper;
-
-import java.sql.Timestamp;
+package com.bci.tareas.helper;
 
 public class ErrorResp {
 private int codigo;

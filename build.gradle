@@ -6,8 +6,6 @@ plugins {
 	id 'application'
 	id 'eclipse'
 	id 'java'
-	id 'jacoco'
-id 'test-report-aggregation'
 }
 
 group 'com.bci.tareas'
@@ -17,16 +15,12 @@ application {
     mainClass = "com.bci.tareas.SpringBootRest2Application"
 }
 
-
  java {
    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 def springfoxVersion = '3.0.0'
 def springfoxUiVersion = '2.9.2'
-
-
-
 
 repositories {
     mavenCentral()
@@ -43,33 +37,19 @@ configurations {
     integrationTestRuntimeOnly.extendsFrom runtimeOnly
 }
 
-
-
-
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.springframework.security:spring-security-test'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+	implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	testImplementation("org.mockito:mockito-core")
-
-  	//  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     runtimeOnly 'com.h2database:h2'
-
-}
-
-dependencies {
-	  implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-	  implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
-	  implementation 'io.jsonwebtoken:jjwt:0.9.1'
-      testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-       testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
 }
 
 
@@ -79,44 +59,33 @@ tasks.named('test', Test) {
 	outputs.upToDateWhen { false }
 }
 
-
-
 test {
 	testLogging {
 		events "PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR"
 	}
 }
 
-
-   
 dependencies {
-
-
-    integrationTestImplementation 'com.google.code.gson:gson:2.3.1'
+	integrationTestImplementation 'com.google.code.gson:gson:2.3.1'
     integrationTestImplementation 'org.springframework.boot:spring-boot-starter-web'
     integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
     integrationTestImplementation 'org.mockito:mockito-junit-jupiter:4.7.0'
-
-
 }
 
 sourceSets {
     integrationTest {
-
         compileClasspath += main.output + test.output
         runtimeClasspath += output + compileClasspath
     }
 }
+
+
 tasks.register('integrationTest', Test) {
     description = 'Runs integration tests.'
-    group = 'verification'
-
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
     shouldRunAfter test
-
     useJUnitPlatform()
-
     testLogging {
         events "passed"
     }

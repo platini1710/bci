@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bci.tareas.dto.RespuestaDTO;
 import com.bci.tareas.exception.ResourceFoundException;
 import com.bci.tareas.helper.Constantes;
-import com.bci.tareas.model.Phone;
+import com.bci.tareas.helper.EmailValidatorSimple;
+import com.bci.tareas.helper.ErrorException;
+import com.bci.tareas.helper.ErrorResp;
+import com.bci.tareas.helper.PasswordValidator;
 import com.bci.tareas.model.Usuario;
 import com.bci.tareas.services.ConsultaUsuarioService;
 import com.bci.tareas.services.RegistraUsuarioServices;
-import com.global.tareas.helper.EmailValidatorSimple;
-import com.global.tareas.helper.ErrorException;
-import com.global.tareas.helper.ErrorResp;
-import com.global.tareas.helper.PasswordValidator;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -9,6 +9,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -25,7 +26,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 public class Phone  implements Serializable {
-	 @Id
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     private String id;
    
     @Column(name = "number", nullable = true)
@@ -34,7 +40,8 @@ public class Phone  implements Serializable {
 	private int cityCode;
     @Column(name = "countrycode", nullable = true)    
 	private String countryCode;
-
+    @OneToOne
+    private Usuario usuario;
     
 
     
@@ -62,6 +69,12 @@ public class Phone  implements Serializable {
 	}
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
     

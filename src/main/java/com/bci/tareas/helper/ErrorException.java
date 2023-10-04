@@ -1,4 +1,4 @@
-package com.global.tareas.helper;
+package com.bci.tareas.helper;
 
 public class ErrorException extends Exception{
 

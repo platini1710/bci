@@ -1,7 +1,7 @@
 package com.bci.tareas.dto;
 
+import com.bci.tareas.helper.ErrorResp;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.global.tareas.helper.ErrorResp;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class RespuestaDTO {

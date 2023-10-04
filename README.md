@@ -4,7 +4,7 @@
 	  
 2.-	Para probar los test unitario y de integracion debe colocar el siguiente comando
 
-      ./gradlew check
+      ./gradlew check run
 	  
 	  los reporte html  estan en la carpeta 
 	  

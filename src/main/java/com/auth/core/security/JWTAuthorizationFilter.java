@@ -39,6 +39,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		try {
 			if (existeJWTToken(request, response)) {
 				Claims claims = validateToken(request);
+				
+				System.out.println("authorities" + claims.get("authorities"));
 				if (claims.get("authorities") != null) {
 					setUpSpringAuthentication(claims);
 				} else {
@@ -69,11 +71,17 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	 * @param claims
 	 */
 	private void setUpSpringAuthentication(Claims claims) {
+		System.out.println("authorities   ******************************************************authorities *************************************");
 		@SuppressWarnings("unchecked")
-		List<String> authorities = (List) claims.get("authorities");
 
+		List<String> authorities = (List) claims.get("authorities");
+		authorities.forEach( System.out::println);
+		
 		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
 				authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+
+		System.out.println("authorities   ******************************************************auth.getName() *************************************" +auth.getName());
+	//	System.out.println("authorities   ******************************************************auth.getName() *************************************" +auth.);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
 	}
