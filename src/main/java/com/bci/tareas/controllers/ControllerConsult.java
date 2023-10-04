@@ -48,7 +48,7 @@ public class ControllerConsult {
 	DateTimeFormatter ZDT_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss a z");
 	String str = "";
 	@ApiOperation(value = "Find todos los Usuarios", notes = "Return clase Respuesta " + "resultado ")
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/allUsuarios")
+	@RequestMapping(method = RequestMethod.GET,  value = "/allUsuarios")
 	@ResponseBody
 	public ResponseEntity<List<RespuestaDTO>>  getAllUsuarios() {
 		logger.info("todo los usuarios");
@@ -106,6 +106,7 @@ public class ControllerConsult {
 	@ApiOperation(value = "Find un tarea por  id de la tarea", notes = "Return tarea "
 			+ "resultado en campoProducto maneja su propias excepcion")
 	@GetMapping("/login/{id}")
+	@ResponseBody
 	public ResponseEntity<?> getUsuariosById(@PathVariable(value ="id", required = true) String id) {
 		str = ZDT_FORMATTER.format(ZonedDateTime.now());
 		logger.info("id  <:::" + id);
