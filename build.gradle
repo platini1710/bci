@@ -6,6 +6,7 @@ plugins {
 	id 'application'
 	id 'eclipse'
 	id 'java'
+ id 'maven-publish'
 }
 
 group 'com.bci.tareas'
@@ -49,8 +50,28 @@ dependencies {
 	testImplementation("org.mockito:mockito-core")
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    runtimeOnly 'com.h2database:h2'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+implementation 'mysql:mysql-connector-java:8.0.25'
+//Thanks for using https://jar-download.com
+
+
 }
+
+
+
+
+tasks.register("copyTask", Copy) {
+    def fromDir = "${project.projectDir.toString()}/build/reports"
+    def toDir =   "${project.projectDir.toString()}/build/1"
+
+    println "${project.buildDir.toString()}"
+    println "   from $fromDir"
+    println "   into $toDir"
+
+    from fromDir
+    into toDir
+}
+
 
 
 
@@ -76,9 +97,9 @@ sourceSets {
     integrationTest {
         compileClasspath += main.output + test.output
         runtimeClasspath += output + compileClasspath
+
     }
 }
-
 
 tasks.register('integrationTest', Test) {
     description = 'Runs integration tests.'

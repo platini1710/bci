@@ -106,6 +106,7 @@ public class ControllerConsult {
 	@ApiOperation(value = "Find un tarea por  id de la tarea", notes = "Return tarea "
 			+ "resultado en campoProducto maneja su propias excepcion")
 	@GetMapping("/login/{id}")
+	@RequestMapping(method = RequestMethod.GET,  value = "/login/{id}")
 	@ResponseBody
 	public ResponseEntity<?> getUsuariosById(@PathVariable(value ="id", required = true) String id) {
 		str = ZDT_FORMATTER.format(ZonedDateTime.now());
@@ -149,7 +150,6 @@ public class ControllerConsult {
 	    errorResp.setCodigo( HttpStatus.INTERNAL_SERVER_ERROR.value());
 	    errorResp.setDetail("se ha producido un error, rut no encontrado ");
 	    errorResp.setTimestamp(str);
-	  //  Usuario.setMsg("se ha producido un error ");
 		logger.info("getError() method - end");
 		return new ResponseEntity<>(
 				errorResp, headers, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -19,7 +19,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "Phone"
+@Table(name = "phone"
 )
 @EntityListeners(AuditingEntityListener.class)
 

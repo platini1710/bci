@@ -1,9 +1,9 @@
 spring:
-  h2:
-    console:
-      enabled: 'true'
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:mysql://${DB_SERVER}:${DB_PORT:3306}/${DB_NAME}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   data:
     jpa:
       repositories:
@@ -23,8 +23,7 @@ logging:
         type: trace
 server:
   port: 8081
-  
 management:
   endpoint:
     shutdown:
-      enabled: true  
+      enabled: true 

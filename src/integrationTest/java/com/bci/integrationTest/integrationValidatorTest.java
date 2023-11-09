@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -85,4 +86,5 @@ public class integrationValidatorTest   {
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.email",is("aespinoza3010@gmail.com")  )) ;;
 	}
+
 }

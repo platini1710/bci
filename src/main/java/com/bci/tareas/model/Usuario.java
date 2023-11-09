@@ -22,7 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
-@Table(name = "Usuario" )
+@Table(name = "usuario" )
 @EntityListeners(AuditingEntityListener.class)
 
 public class Usuario implements Serializable {
@@ -44,12 +44,12 @@ public class Usuario implements Serializable {
     private String lastLogin;
     @Column(name = "token", nullable = true ,length = 300)
     private String token;
-    @Column(name = "isActive",columnDefinition = "boolean  default true", nullable = true )
+    @Column(name = "isactive",columnDefinition = "boolean  default true", nullable = true )
     private boolean  isActive;
 
     @OneToOne(fetch=FetchType.EAGER, orphanRemoval = true, cascade = { javax.persistence.CascadeType.ALL })
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name="phone_id",referencedColumnName = "id",nullable = true )
+    @JoinColumn(name="id",referencedColumnName = "id",nullable = true )
     private Phone phone;
     
     
